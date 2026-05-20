@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagus Praditama - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           1. VARIABEL CSS (DARK & LIGHT MODE)
+           ========================================= */
+        :root {
+            /* Tema Gelap (Default) */
+            --bg-color: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #0ea5e9; 
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.2);
+            --shadow-hover: 0 10px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        [data-theme="light"] {
+            /* Tema Terang */
+            --bg-color: #f8fafc;
+            --bg-secondary: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #0284c7;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --shadow-glow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 30px rgba(2, 132, 199, 0.25);
+        }
+
+        /* =========================================
+           2. RESET & GLOBAL STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* =========================================
+           3. LANDING SCROLL PROGRESS BAR
+           ========================================= */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: var(--accent-color);
+            z-index: 10000;
+            box-shadow: 0 0 15px var(--accent-color);
+            transition: width 0.1s ease-out;
+        }
+
+        /* =========================================
+           4. NAVBAR & THEME SWITCHER
+           ========================================= */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            transition: background-color 0.4s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .theme-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* =========================================
+           5. HERO SECTION & STATIC FLOATING MENU
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h2 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Area Struktur Foto & Navigasi Lingkaran */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 420px;
+        }
+
+        .ring-frame {
+            position: relative;
+            width: 330px;
+            height: 330px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed var(--border-color);
+            border-radius: 50%;
+        }
+
+        .profile-img {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: var(--shadow-glow);
+            z-index: 10;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Navigasi Node - Tetap di Tempat dengan Animasi Floating Alami */
+        .nav-node {
+            position: absolute;
+            width: 54px;
+            height: 54px;
+            background: var(--bg-secondary);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        /* Efek Hover Node */
+        .nav-node:hover {
+            background: var(--accent-color);
+            color: #fff;
+            transform: scale(1.2) !important; /* Memutus animasi float sejenak saat di-hover */
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Pemetaan Posisi Statis di Sekeliling Lingkaran & Assign Animasi Bergerak di Tempat */
+        .nav-node.top    { top: -27px; left: calc(50% - 27px); animation: floatY 3.5s ease-in-out infinite; }
+        .nav-node.right  { right: -27px; top: calc(50% - 27px); animation: floatX 4s ease-in-out infinite; }
+        .nav-node.bottom { bottom: -27px; left: calc(50% - 27px); animation: floatY 3.8s ease-in-out infinite alternate; }
+        .nav-node.left   { left: -27px; top: calc(50% - 27px); animation: floatX 3.2s ease-in-out infinite alternate; }
+
+        /* Keyframes Animasi Bergerak Lembut di Tempat (Diem Tidak Muter) */
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes floatX {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* =========================================
+           6. CARDS & SECTIONS (PROFIL, RESUME, SKILLS)
+           ========================================= */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 20px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            backdrop-filter: blur(8px);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.35rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card p, .card ul {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card ul li::before {
+            content: '\f105'; /* Simbol panah modern FontAwesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover ul li::before {
+            transform: translateX(3px);
+        }
+
+        /* Desain Progress Bar Keahlian */
+        .skill-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .skill-item {
+            width: 100%;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 10px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0; /* Dikendalikan JS secara dinamis saat scroll */
+            border-radius: 20px;
+            transition: width 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Portfolio Grid Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        
+        .portfolio-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+        }
+
+        .portfolio-icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-icon {
+            transform: scale(1.1);
+        }
+
+        /* =========================================
+           7. FOOTER
+           ========================================= */
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           8. REVEAL ANIMAION (MUNCUL ORGANIK)
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           9. RESPONSIVE LAYOUT (MOBILE OPTIMIZATION)
+           ========================================= */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 60px;
+            }
+            .hero-text p {
+                text-align: center;
+            }
+            .hero-visual {
+                order: -1; /* Gambar berpindah ke paling atas di handphone */
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .ring-frame {
+                width: 270px;
+                height: 270px;
+            }
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            /* Penyesuaian koordinat navigasi sekeliling foto untuk layar kecil */
+            .nav-node.top    { top: -20px; left: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
+            .nav-node.right  { right: -20px; top: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
+            .nav-node.bottom { bottom: -20px; left: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
+            .nav-node.left   { left: -20px; top: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div id="scroll-progress"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Bagus<span>Praditama</span></div>
+                <button class="theme-btn" id="theme-toggle" aria-label="Ubah Tema">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            
+            <div class="hero-text reveal">
+                <h2>Selamat Datang</h2>
+                <h1>Saya <span>Bagus Praditama</span></h1>
+                <p>
+                    Saat ini saya sedang menempuh pendidikan di Universitas Komputama mengambil program studi Sistem Informasi. Lahir di Kabupaten Cilacap, Kecamatan Majenang, Desa Jenang pada tanggal 22 Januari 2007. Harapan saya adalah dapat belajar dengan maksimal di sini, lulus tepat waktu, dan tumbuh menjadi orang yang sukses di masa depan.
+                </p>
+                <a href="#about" class="cta-btn">
+                    Lihat Profil <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+            
+            <div class="hero-visual reveal">
+                <div class="ring-frame">
+                    <img src="IMG-20260519-WA0006.jpg" alt="Bagus Praditama" class="profile-img">
+                    
+                    <a href="#about" class="nav-node top" title="Tentang & Pendidikan"><i class="fas fa-user-graduate"></i></a>
+                    <a href="#experience" class="nav-node right" title="Pengalaman Kerja"><i class="fas fa-briefcase"></i></a>
+                    <a href="#skills" class="nav-node bottom" title="Keahlian Teknis"><i class="fas fa-tools"></i></a>
+                    <a href="#portfolio" class="nav-node left" title="Fokus Portofolio"><i class="fas fa-cubes"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="container reveal">
+        <h2 class="section-title">Profil & <span>Pendidikan</span></h2>
+        <div class="grid-2">
+            
+            <div class="card">
+                <h3><i class="fas fa-university"></i> Jalur Akademik</h3>
+                <ul>
+                    <li><strong>Universitas Komputama</strong><br>Sistem Informasi (Aktif Kuliah)</li>
+                    <li><strong>SMK Farmasi Majenang</strong></li>
+                    <li><strong>SMP Negeri 2 Majenang</strong></li>
+                    <li><strong>SD Negeri Jenang 04</strong></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-id-card"></i> Detail Asal & Minat</h3>
+                <p style="margin-bottom: 20px;">
+                    <strong>Tempat, Tanggal Lahir:</strong><br>
+                    Desa Jenang, Kecamatan Majenang, Kabupaten Cilacap. 22 Januari 2007.
+                </p>
+                <p>Untuk menyegarkan pikiran di luar jam kuliah sistem informasi, hobi saya adalah:</p>
+                <ul style="margin-top: 15px;">
+                    <li>Bermain Bola <i class="fas fa-futbol" style="color: var(--accent-color); margin-left: 5px;"></i></li>
+                    <li>Bermain Bulutangkis <i class="fas fa-subway" style="display:none;"></i><i class="fas fa-table-tennis-paddle-ball" style="color: var(--accent-color); margin-left: 5px;"></i></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience" class="container reveal">
+        <h2 class="section-title">Pengalaman <span>Kerja</span></h2>
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <h3 style="font-size: 1.5rem;"><i class="fas fa-network-wired"></i> PT INDITECH GLOBAL NETWORK (WIFI KITA)</h3>
+            <p style="margin-top: 15px; text-align: justify;">
+                Berpengalaman bekerja dan berkontribusi langsung di lingkungan industri penyedia internet PT Inditech Global Network. Mengasah pemahaman nyata mengenai operasional jaringan, penanganan konektivitas klien, dan pemeliharaan perangkat infrastruktur IT di lapangan.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="container reveal">
+        <h2 class="section-title">Keahlian <span>Saya</span></h2>
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <div class="skill-container">
+                
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Pembuatan Website (HTML5, CSS3, JS Tipis-Tipis)</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" data-width="75%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Edit Desain Komponen & UI di Figma</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" data-width="85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Analisis Logika Sistem Informasi</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" data-width="70%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container reveal">
+        <h2 class="section-title">Bidang <span>Portofolio</span></h2>
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-item">
+                <i class="fas fa-code portfolio-icon"></i>
+                <h3>Web Development</h3>
+                <p>Membangun rancangan fondasi website satu halaman yang responsif, terstruktur, rapi, dan nyaman dipandang di berbagai gadget.</p>
+            </div>
+
+            <div class="portfolio-item">
+                <i class="fab fa-figma portfolio-icon"></i>
+                <h3>UI/UX Prototyping</h3>
+                <p>Mengolah tata letak visual komponen interaktif digital lewat figma sebelum masuk ke proses pengodean inti program.</p>
+            </div>
+
+            <div class="portfolio-item">
+                <i class="fas fa-project-diagram portfolio-icon"></i>
+                <h3>Sistem Manajemen Data</h3>
+                <p>Mempelajari kerangka kerja alur logika arsitektur informasi terpadu yang dipelajari selama kuliah di program studi Sistem Informasi.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bagus Praditama. All Rights Reserved. Mahasiswa Sistem Informasi Universitas Komputama.</p>
+    </footer>
+
+    <script>
+        // --- A. Indikator Landing Scroll Progress Bar ---
+        window.addEventListener('scroll', () => {
+            const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progressPercentage = (currentScroll / totalHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progressPercentage + '%';
+        });
+
+        // --- B. Dark Mode & Light Mode Toggle Switching ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const rootBody = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            if (rootBody.getAttribute('data-theme') === 'dark') {
+                rootBody.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                rootBody.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // --- C. Animasi Reveal (Muncul) & Pengisian Progress Bar Otomatis ---
+        const structuralReveals = document.querySelectorAll('.reveal');
+        
+        const contentIntersectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Picu transisi kemunculan elemen card / text
+                    entry.target.classList.add('active');
+                    
+                    // Jika elemen section "skills" telah terlewati, picu animasi bar kemajuan
+                    if (entry.target.id === 'skills') {
+                        const internalBars = entry.target.querySelectorAll('.progress-bar');
+                        internalBars.forEach(bar => {
+                            const exactWidth = bar.getAttribute('data-width');
+                            bar.style.width = exactWidth;
+                        });
+                    }
+                    // Berhenti mengamati komponen yang sudah muncul agar animasi tetap stabil
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12, // Elemen terpicu jika minimal 12% areanya masuk layar pantau
+            rootMargin: "0px 0px -40px 0px"
+        });
+
+        structuralReveals.forEach(element => contentIntersectionObserver.observe(element));
+    </script>
+</body>
+</html>
