@@ -260,7 +260,7 @@
         .nav-node:hover {
             background: var(--accent-color);
             color: #fff;
-            transform: scale(1.2) !important; /* Memutus animasi float sejenak saat di-hover */
+            transform: scale(1.2) !important;
             box-shadow: var(--shadow-hover);
         }
 
@@ -269,6 +269,9 @@
         .nav-node.right  { right: -27px; top: calc(50% - 27px); animation: floatX 4s ease-in-out infinite; }
         .nav-node.bottom { bottom: -27px; left: calc(50% - 27px); animation: floatY 3.8s ease-in-out infinite alternate; }
         .nav-node.left   { left: -27px; top: calc(50% - 27px); animation: floatX 3.2s ease-in-out infinite alternate; }
+        
+        /* Posisi Kanan Atas Diagonal untuk Link Project Baru */
+        .nav-node.top-right { top: 22px; right: 22px; animation: floatY 3.6s ease-in-out infinite alternate; }
 
         /* Keyframes Animasi Bergerak Lembut di Tempat (Diem Tidak Muter) */
         @keyframes floatY {
@@ -346,7 +349,7 @@
         }
 
         .card ul li::before {
-            content: '\f105'; /* Simbol panah modern FontAwesome */
+            content: '\f105'; 
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             color: var(--accent-color);
@@ -390,7 +393,7 @@
         .progress-bar {
             height: 100%;
             background: var(--accent-color);
-            width: 0; /* Dikendalikan JS secara dinamis saat scroll */
+            width: 0; 
             border-radius: 20px;
             transition: width 1.8s cubic-bezier(0.19, 1, 0.22, 1);
             box-shadow: 0 0 10px var(--accent-color);
@@ -469,7 +472,7 @@
                 text-align: center;
             }
             .hero-visual {
-                order: -1; /* Gambar berpindah ke paling atas di handphone */
+                order: -1; 
             }
             .grid-2 {
                 grid-template-columns: 1fr;
@@ -487,6 +490,9 @@
             .nav-node.right  { right: -20px; top: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
             .nav-node.bottom { bottom: -20px; left: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
             .nav-node.left   { left: -20px; top: calc(50% - 20px); width: 42px; height: 42px; font-size: 1rem; }
+            
+            /* Penyesuaian node project baru di HP */
+            .nav-node.top-right { top: 18px; right: 18px; width: 42px; height: 42px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -521,9 +527,12 @@
             
             <div class="hero-visual reveal">
                 <div class="ring-frame">
-                    <img src="IMG-20260519-WA0006.jpg" alt="Bagus Praditama" class="profile-img">
+                    <img src="c:\Users\ADVAN\Downloads\WhatsApp Image 2026-05-19 at 12.09.42.jpeg" alt="Bagus Praditama" class="profile-img">
                     
                     <a href="#about" class="nav-node top" title="Tentang & Pendidikan"><i class="fas fa-user-graduate"></i></a>
+                    
+                    <a href="https://bagus22553.github.io/webkasirwarkop/" target="_blank" class="nav-node top-right" title="Live Project: Web Kasir Warkop"><i class="fas fa-cash-register"></i></a>
+                    
                     <a href="#experience" class="nav-node right" title="Pengalaman Kerja"><i class="fas fa-briefcase"></i></a>
                     <a href="#skills" class="nav-node bottom" title="Keahlian Teknis"><i class="fas fa-tools"></i></a>
                     <a href="#portfolio" class="nav-node left" title="Fokus Portofolio"><i class="fas fa-cubes"></i></a>
@@ -671,10 +680,8 @@
         const contentIntersectionObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Picu transisi kemunculan elemen card / text
                     entry.target.classList.add('active');
                     
-                    // Jika elemen section "skills" telah terlewati, picu animasi bar kemajuan
                     if (entry.target.id === 'skills') {
                         const internalBars = entry.target.querySelectorAll('.progress-bar');
                         internalBars.forEach(bar => {
@@ -682,12 +689,11 @@
                             bar.style.width = exactWidth;
                         });
                     }
-                    // Berhenti mengamati komponen yang sudah muncul agar animasi tetap stabil
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.12, // Elemen terpicu jika minimal 12% areanya masuk layar pantau
+            threshold: 0.12, 
             rootMargin: "0px 0px -40px 0px"
         });
 
